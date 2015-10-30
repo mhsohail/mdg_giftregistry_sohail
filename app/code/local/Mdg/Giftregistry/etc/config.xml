@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <config>
+	<!--
+	The <modules> node is just used to specify the current module version, which is later
+	used to decide which installation and upgrade scripts to run.
+	-->
     <modules>
 		<!-- Controller name should be Mdg_Giftregistry_IndexController -->
         <Mdg_Giftregistry>
@@ -15,6 +19,11 @@
     </phpunit>
     <global>
 		<models>
+			<!--
+			<factory_alias> is used by factory methods such as Mage::getModel() or Mage::helper()
+			to instantiate our custom objects. <mdg_giftregistry> below is <factory_alias>
+			Mage::getModel("mdg_giftregistry/XXX")
+			-->
 			<mdg_giftregistry>
 				<class>Mdg_Giftregistry_Model</class>
 				<resourceModel>mdg_giftregistry_mysql4</resourceModel>
@@ -22,25 +31,49 @@
 			<mdg_giftregistry_mysql4>
 				<class>Mdg_Giftregistry_Model_Mysql4</class>
 				<entities>
+					<!-- Mage::getModel("mdg_giftregistry/entity") -->
 					<entity>
+						<!--
+						$tableName = $installer->getTable('mdg_giftregistry/entity');
+						$tableName has value "mdg_giftregistry_entity"
+						-->
 						<table>mdg_giftregistry_entity</table>
 					</entity>
+					<!-- Mage::getModel("mdg_giftregistry/item") -->
 					<item>
+						<!--
+						$tableName = $installer->getTable('mdg_giftregistry/item');
+						$tableName has value "mdg_giftregistry_item"
+						-->
 						<table>mdg_giftregistry_item</table>
 					</item>
+					<!-- Mage::getModel("mdg_giftregistry/type") -->
 					<type>
+						<!--
+						$tableName = $installer->getTable('mdg_giftregistry/type');
+						$tableName has value "mdg_giftregistry_type"
+						-->
 						<table>mdg_giftregistry_type</table>
 					</type>
 				</entities>
 			</mdg_giftregistry_mysql4>
 		</models>
         <blocks>
-            <mdg_giftregistry>
+            <!--
+			<factory_alias> is used by factory methods such as Mage::getModel() or Mage::helper()
+			to instantiate our custom objects. <mdg_giftregistry> below is <factory_alias>
+			-->
+			<mdg_giftregistry>
                 <class>Mdg_Giftregistry_Block</class>
             </mdg_giftregistry>
         </blocks>
         <helpers>
-            <mdg_giftregistry>
+            <!--
+			<factory_alias> is used by factory methods such as Mage::getModel() or Mage::helper()
+			to instantiate our custom objects. <mdg_giftregistry> below is <factory_alias>
+			Mage::helper("mdg_giftregistry/XXX")
+			-->
+			<mdg_giftregistry>
                 <class>Mdg_Giftregistry_Helper</class>
             </mdg_giftregistry>
         </helpers>
