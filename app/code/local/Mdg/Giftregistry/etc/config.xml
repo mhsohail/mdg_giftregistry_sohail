@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<config>
+	<!--
+	The <modules> node is just used to specify the current module version, which is later
+	used to decide which installation and upgrade scripts to run.
+	-->
+    <modules>
+		<!-- Controller name should be Mdg_Giftregistry_IndexController -->
+        <Mdg_Giftregistry>
+            <version>0.1.0</version>
+        </Mdg_Giftregistry>
+    </modules>
+    <phpunit>
+        <suite>
+            <modules>
+                <Mdg_Giftregistry/>
+            </modules>
+        </suite>
+    </phpunit>
+    <global>
+		<models>
+			<!--
+			<factory_alias> is used by factory methods such as Mage::getModel() or Mage::helper()
+			to instantiate our custom objects. <mdg_giftregistry> below is <factory_alias>
+			Mage::getModel("mdg_giftregistry/XXX")
+			-->
+			<mdg_giftregistry>
+				<class>Mdg_Giftregistry_Model</class>
+				<resourceModel>mdg_giftregistry_mysql4</resourceModel>
+			</mdg_giftregistry>
+			<mdg_giftregistry_mysql4>
+				<class>Mdg_Giftregistry_Model_Mysql4</class>
+				<entities>
+					<!-- Mage::getModel("mdg_giftregistry/entity") -->
+					<entity>
+						<!--
+						$tableName = $installer->getTable('mdg_giftregistry/entity');
+						$tableName has value "mdg_giftregistry_entity"
+						-->
+						<table>mdg_giftregistry_entity</table>
+					</entity>
+					<!-- Mage::getModel("mdg_giftregistry/item") -->
+					<item>
+						<!--
+						$tableName = $installer->getTable('mdg_giftregistry/item');
+						$tableName has value "mdg_giftregistry_item"
+						-->
+						<table>mdg_giftregistry_item</table>
+					</item>
+					<!-- Mage::getModel("mdg_giftregistry/type") -->
+					<type>
+						<!--
+						$tableName = $installer->getTable('mdg_giftregistry/type');
+						$tableName has value "mdg_giftregistry_type"
+						-->
+						<table>mdg_giftregistry_type</table>
+					</type>
+				</entities>
+			</mdg_giftregistry_mysql4>
+		</models>
+        <blocks>
+            <!--
+			<factory_alias> is used by factory methods such as Mage::getModel() or Mage::helper()
+			to instantiate our custom objects. <mdg_giftregistry> below is <factory_alias>
+			-->
+			<mdg_giftregistry>
+                <class>Mdg_Giftregistry_Block</class>
+            </mdg_giftregistry>
+        </blocks>
+        <helpers>
+            <!--
+			<factory_alias> is used by factory methods such as Mage::getModel() or Mage::helper()
+			to instantiate our custom objects. <mdg_giftregistry> below is <factory_alias>
+			Each module has a default helper class named Data. Helpers can just pass <factory_alias> without
+			a class-specific class name to the helper factory method and this will default to the
+			Data helper class. So, if we wanted to instantiate our default helper class, we only need to do
+			the following:
+			Mage::helper("mdg_giftregistry")
+			-->
+			<mdg_giftregistry>
+                <class>Mdg_Giftregistry_Helper</class>
+            </mdg_giftregistry>
+        </helpers>
+        <resources>
+            <mdg_giftregistry_setup>
+                <setup>
+                    <module>Mdg_Giftregistry</module>
+                    <class>Mdg_Giftregistry_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mdg_giftregistry_setup>
+            <mdg_giftregistry_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mdg_giftregistry_write>
+            <mdg_giftregistry_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mdg_giftregistry_read>
+        </resources>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <mdg_giftregistry module="mdg_giftregistry">
+                    <file>mdg_giftregistry.xml</file>
+                </mdg_giftregistry>
+            </updates>
+        </layout>
+        <routers>
+            <mdg_giftregistry>
+                <use>standard</use>
+                <args>
+                    <module>Mdg_Giftregistry</module>
+                    <!--
+					'giftregistry' below is used to access the page at frontend.
+					for example www.url.com/giftregistry/index/index
+					the last 'index' is the name of the action in Alanstormdotcom_Helloworld_IndexController
+					we can choose any name for frontend url, in place of 'giftregistry'
+					-->
+					<frontName>giftregistry</frontName>
+                </args>
+            </mdg_giftregistry>
+        </routers>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <mdg_giftregistry before="Mage_Adminhtml">Mdg_Giftregistry_Adminhtml</mdg_giftregistry>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <mdg_giftregistry module="mdg_giftregistry">
+                    <file>giftregistry.xml</file>
+                </mdg_giftregistry>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
+
